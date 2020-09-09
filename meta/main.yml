@@ -1,7 +1,7 @@
 galaxy_info:
   author: death rangerr
-  description: deploy a AWS VPC using this role
-  company: Reva
+  description: your role description
+  company: your company (optional)
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
@@ -40,9 +40,6 @@ galaxy_info:
   #   - 99.99
 
   galaxy_tags: []
-   - VPC
-   - subnets
-   - igw
     # List tags for your role here, one per line. A tag is a keyword that describes
     # and categorizes the role. Users find roles by searching for tags. Be sure to
     # remove the '[]' above, if you add tags to this list.
@@ -53,14 +50,4 @@ galaxy_info:
 dependencies: []
   # List your role dependencies here, one per line. Be sure to remove the '[]' above,
   # if you add dependencies to this list.
- cloud_platforms: []
-   - aws
-  #Optional. Provide a list of Cloud platforms targeted by this role.
-   
- platforms: []
-  # Required. Provide a list of platforms and releases targeted by this role.
-  - name: Ubuntu
-    versions:
-      - all
-
   
