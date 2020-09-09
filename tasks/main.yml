@@ -1,0 +1,41 @@
+---
+
+ - name: create VPC
+   ec2_vpc_net:
+     name: "{{ vpc_name }}"
+     cidr_block: "{{ vpc_cidr }}"
+     region: "{{ region }}"
+     state: present
+     aws_access_key: "{{ aws_access_key }}"
+     aws_secret_key: "{{ aws_secret_key }}"
+   register: vpc
+
+
+ - name: Set VPC ID in variable
+   set_fact:
+     vpc_id: "{{ vpc.vpc.id }}"
+
+
+ - name: associate subnet to the VPC
+   ec2_vpc_subnet:
+    state: present
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    cidr: "{{ subnet_cidr }}"
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    map_public: yes
+    resource_tags:
+      Name: "{{ subnet_name }}"
+   register: subnet
+
+ - name: create IGW
+   ec2_vpc_igw:
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    state: present
+    tags:
+      Name: "{{ igw_name }}"
+   register: igw
